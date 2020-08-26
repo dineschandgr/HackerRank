@@ -18,11 +18,13 @@ class DeleteDuplicateNode
     	Node start = head;
     	Node current = head;
     	while(current.next != null) {
-    		current = start.next;
+    		current = current.next;
     		
     		if(start.data == current.data) {
     			start.next = current.next;
     			current = null;
+    		}else {
+    			start = start.next;
     		}
     	}
 		return head;

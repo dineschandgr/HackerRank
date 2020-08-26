@@ -5,7 +5,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
-public class ReverseLinkedList {
+public class MergeLinkedList {
 
     static class SinglyLinkedListNode {
         public int data;
@@ -39,16 +39,19 @@ public class ReverseLinkedList {
         }
     }
 
-    public static void printSinglyLinkedList(SinglyLinkedListNode node) throws IOException {
+    public static void printSinglyLinkedList(SinglyLinkedListNode node, String sep, BufferedWriter bufferedWriter) throws IOException {
         while (node != null) {
-          System.out.println(String.valueOf(node.data));
+            bufferedWriter.write(String.valueOf(node.data));
 
             node = node.next;
 
+            if (node != null) {
+                bufferedWriter.write(sep);
+            }
         }
     }
 
-    // Complete the reverse function below.
+    // Complete the mergeLists function below.
 
     /*
      * For your reference:
@@ -59,50 +62,58 @@ public class ReverseLinkedList {
      * }
      *
      */
-    static SinglyLinkedListNode reverse(SinglyLinkedListNode head) {
-    	 if(head == null)
-             return null;
+    static SinglyLinkedListNode mergeLists(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
 
-         SinglyLinkedListNode prev = head;
-         SinglyLinkedListNode current = head.next;
+        if(head1 == null && head2 == null)
+            return null;
 
-         while(current != null){
-             SinglyLinkedListNode next = current.next;
+        SinglyLinkedListNode current = head1;
 
-             current.next = prev;
-             prev = current;
-             current = next;
-         }
-       
-         head.next = null;
-         head = prev;
-         return head;
+        while(current.next != null)
+            current = current.next;
+        
+        current.next = head2;
+        return head1;
+            
+
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
+
         int tests = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
         for (int testsItr = 0; testsItr < tests; testsItr++) {
-            SinglyLinkedList llist = new SinglyLinkedList();
+            SinglyLinkedList llist1 = new SinglyLinkedList();
 
-            int llistCount = scanner.nextInt();
+            int llist1Count = scanner.nextInt();
             scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-            for (int i = 0; i < llistCount; i++) {
-                int llistItem = scanner.nextInt();
+            for (int i = 0; i < llist1Count; i++) {
+                int llist1Item = scanner.nextInt();
                 scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
 
-                llist.insertNode(llistItem);
+                llist1.insertNode(llist1Item);
+            }
+          
+          	SinglyLinkedList llist2 = new SinglyLinkedList();
+
+            int llist2Count = scanner.nextInt();
+            scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+            for (int i = 0; i < llist2Count; i++) {
+                int llist2Item = scanner.nextInt();
+                scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
+
+                llist2.insertNode(llist2Item);
             }
 
-            SinglyLinkedListNode llist1 = reverse(llist.head);
+            SinglyLinkedListNode llist3 = mergeLists(llist1.head, llist2.head);
 
-            printSinglyLinkedList(llist1);
+            System.out.println(llist3);
         }
-
 
         scanner.close();
     }

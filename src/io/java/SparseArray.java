@@ -1,23 +1,39 @@
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+package io.java;
 
-public class Solution {
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class SparseArray {
 
     // Complete the matchingStrings function below.
     static int[] matchingStrings(String[] strings, String[] queries) {
+    	int[] matchingStrCount = new int[queries.length];
 
+        HashMap<String,Integer> map = new HashMap<>();
+
+        //O(n)
+        for(String str : strings){
+            int count = map.get(str)!= null ? map.get(str) : 0;
+            map.put(str,++count);
+        }
+
+        int index = 0;
+        //O(n)
+        for(String query : queries){
+            int count = map.get(query) != null ? map.get(query) : 0;
+            matchingStrCount[index++] = count;
+        }
+
+        return matchingStrCount;
 
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int stringsCount = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -42,16 +58,10 @@ public class Solution {
         int[] res = matchingStrings(strings, queries);
 
         for (int i = 0; i < res.length; i++) {
-            bufferedWriter.write(String.valueOf(res[i]));
-
-            if (i != res.length - 1) {
-                bufferedWriter.write("\n");
-            }
+            System.out.println(String.valueOf(res[i]));
         }
 
-        bufferedWriter.newLine();
 
-        bufferedWriter.close();
 
         scanner.close();
     }
