@@ -64,7 +64,24 @@ public class Solution {
      *
      */
     static SinglyLinkedListNode deleteNode(SinglyLinkedListNode head, int position) {
-
+        int counter = 0;
+    	
+    	if(position == 0){
+    		head = head.next;
+    		return head;
+    	}
+    	
+    	SinglyLinkedListNode current = head;
+    	SinglyLinkedListNode prev = null;
+    	while(counter != position){
+    		prev = current;
+    		current = current.next;
+    		counter++;
+    	}
+    	
+    	prev.next = current.next;
+    	current = null;
+		return head;
 
     }
 
