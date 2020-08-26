@@ -16,18 +16,17 @@ class DeleteDuplicateNode
 	
     public Node removeDuplicates(Node head) {
     	Node start = head;
-    	Node current = head;
-    	while(current.next != null) {
-    		current = current.next;
-    		
+    	Node current = head.next;
+    	while(current != null) {
     		if(start.data == current.data) {
     			start.next = current.next;
     			current = null;
-    		}else {
+    			current = start.next;
+    		}else{
     			start = start.next;
     		}
     	}
-		return head;
+	return head;
     }
 
 	 public Node insert(Node head,int data)

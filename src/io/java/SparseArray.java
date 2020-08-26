@@ -10,24 +10,24 @@ public class SparseArray {
 
     // Complete the matchingStrings function below.
     static int[] matchingStrings(String[] strings, String[] queries) {
-    	int[] matchingStrCount = new int[queries.length];
+        int[] matchingStrCount = new int[queries.length];
 
-        HashMap<String,Integer> map = new HashMap<>();
+            HashMap<String,Integer> map = new HashMap<>();
 
-        //O(n)
-        for(String str : strings){
-            int count = map.get(str)!= null ? map.get(str) : 0;
-            map.put(str,++count);
-        }
+            //O(n)
+            for(String str : strings){
+                int count = map.get(str)!= null ? map.get(str) : 0;
+                map.put(str,++count);
+            }
 
-        int index = 0;
-        //O(n)
-        for(String query : queries){
-            int count = map.get(query) != null ? map.get(query) : 0;
-            matchingStrCount[index++] = count;
-        }
+            int index = 0;
+            //O(n)
+            for(String query : queries){
+                int count = map.get(query);
+                matchingStrCount[index++] = count;
+            }
 
-        return matchingStrCount;
+            return matchingStrCount;
 
     }
 
