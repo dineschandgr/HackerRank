@@ -6,13 +6,13 @@ import java.util.Scanner;
 
 class BstTraversal{
 
-static void levelOrder(Node root){
-	Queue<Node> queue = new LinkedList<>();
+static void levelOrder(Node1 root){
+	Queue<Node1> queue = new LinkedList<>();
 	    if (root != null) {
 	        queue.add(root);
 	    }
 	    while ( ! queue.isEmpty()) {
-	        Node n = queue.remove();
+	        Node1 n = queue.remove();
 	        System.out.print(n.data + " ");
 	        if (n.left != null) {
 	            queue.add(n.left);
@@ -23,12 +23,12 @@ static void levelOrder(Node root){
 	    }
     }
 
-public static Node insert(Node root,int data){
+public static Node1 insert(Node1 root,int data){
         if(root==null){
-            return new Node(data);
+            return new Node1(data);
         }
         else{
-            Node cur;
+            Node1 cur;
             if(data<=root.data){
                 cur=insert(root.left,data);
                 root.left=cur;
@@ -44,7 +44,7 @@ public static Node insert(Node root,int data){
     public static void main(String args[]){
             Scanner sc=new Scanner(System.in);
             int T=sc.nextInt();
-            Node root=null;
+            Node1 root=null;
             while(T-->0){
                 int data=sc.nextInt();
                 root=insert(root,data);

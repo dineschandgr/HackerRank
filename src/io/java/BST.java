@@ -2,8 +2,8 @@ package io.java;
 
 import java.util.*;
 import java.io.*;
-class Node{
-    Node left,right;
+private class Node{
+    Node1 left,right;
     int data;
     Node(int data){
         this.data=data;
@@ -12,9 +12,9 @@ class Node{
 }
 class BST{
 
-	public static int getHeight(Node root){
+	public static int getHeight(Node1 root){
       //Write your code here
-      Node current = root;
+      Node1 current = root;
       int heightLeft = 0;
       while(current.left != null){
     	  heightLeft++;
@@ -37,12 +37,12 @@ class BST{
 	
     }
 
-    public static Node insert(Node root,int data){
+    public static Node1 insert(Node1 root,int data){
         if(root==null){
-            return new Node(data);
+            return new Node1(data);
         }
         else{
-            Node cur;
+            Node1 cur;
             if(data<=root.data){
                 cur=insert(root.left,data);
                 root.left=cur;
@@ -57,7 +57,7 @@ class BST{
 	 public static void main(String args[]){
         Scanner sc=new Scanner(System.in);
         int T=sc.nextInt();
-        Node root=null;
+        Node1 root=null;
         while(T-->0){
             int data=sc.nextInt();
             root=insert(root,data);
