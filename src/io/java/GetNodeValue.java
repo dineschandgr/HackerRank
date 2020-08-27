@@ -66,7 +66,19 @@ public class GetNodeValue {
      *
      */
     static int getNode(SinglyLinkedListNode head, int positionFromTail) {
-
+        SinglyLinkedListNode prev = head;
+    	SinglyLinkedListNode current = head;
+    	
+    	for(int i =0;i<positionFromTail;i++){
+    		current = current.next;
+    	}
+    	
+    	while(current.next != null){
+    		current = current.next;
+    		prev = prev.next;
+    	}
+    	
+		return prev.data;
 
     }
 
