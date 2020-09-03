@@ -1,12 +1,9 @@
 package io.java;
 
-import java.io.*;
-import java.math.*;
-import java.security.*;
-import java.text.*;
-import java.util.*;
-import java.util.concurrent.*;
-import java.util.regex.*;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class MergePointofLists {
 
@@ -42,15 +39,11 @@ public class MergePointofLists {
         }
     }
 
-    public static void printSinglyLinkedList(SinglyLinkedListNode node, String sep, BufferedWriter bufferedWriter) throws IOException {
+    public static void printSinglyLinkedList(SinglyLinkedListNode node) throws IOException {
         while (node != null) {
-            bufferedWriter.write(String.valueOf(node.data));
+        	System.out.println(String.valueOf(node.data));
 
             node = node.next;
-
-            if (node != null) {
-                bufferedWriter.write(sep);
-            }
         }
     }
 
@@ -66,14 +59,29 @@ public class MergePointofLists {
      *
      */
     static int findMergeNode(SinglyLinkedListNode head1, SinglyLinkedListNode head2) {
-
+        
+    	SinglyLinkedListNode current1 = head1;
+    	SinglyLinkedListNode current2 = head2;
+    	
+    	if(current1 == null || current2 == null)
+    		return 0;
+    	
+    	while(current1 != current2 ){
+    		
+    			if(current1.next != null)
+    				current1 = current1.next;
+    			
+    			if(current2.next != null)
+    				current2 = current2.next;
+    	}
+    	
+		return current1.data;
 
     }
 
     private static final Scanner scanner = new Scanner(System.in);
 
     public static void main(String[] args) throws IOException {
-        BufferedWriter bufferedWriter = new BufferedWriter(new FileWriter(System.getenv("OUTPUT_PATH")));
 
         int tests = scanner.nextInt();
         scanner.skip("(\r\n|[\n\r\u2028\u2029\u0085])?");
@@ -125,11 +133,9 @@ public class MergePointofLists {
 
             int result = findMergeNode(llist1.head, llist2.head);
 
-            bufferedWriter.write(String.valueOf(result));
-            bufferedWriter.newLine();
+            System.out.println(String.valueOf(result));
         }
 
-        bufferedWriter.close();
 
         scanner.close();
     }

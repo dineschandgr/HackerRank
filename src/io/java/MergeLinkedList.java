@@ -67,9 +67,16 @@ public class MergeLinkedList {
         if(head1 == null && head2 == null)
             return null;
 
-        SinglyLinkedListNode current = head1;
+        SinglyLinkedListNode current1 = head1;
+        SinglyLinkedListNode current2 = head2;
 
-        while(current.next != null)
+        while(current1.next != null) {
+        	
+        	if(current1.data < current2.data) {
+        		
+        	}
+        	
+        }
             current = current.next;
         
         current.next = head2;
