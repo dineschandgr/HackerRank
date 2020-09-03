@@ -66,6 +66,7 @@ public class MergePointofLists {
     	if(current1 == null || current2 == null)
     		return 0;
     	
+
     	while(current1 != current2 ){
     		
     			if(current1.next != null)
@@ -73,8 +74,7 @@ public class MergePointofLists {
     			
     			if(current2.next != null)
     				current2 = current2.next;
-    	}
-    	
+
 		return current1.data;
 
     }
